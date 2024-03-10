@@ -25,6 +25,16 @@ class ReviewFactory extends Factory
         ];
     }
 
+    public function fixDate($createdBookAt)
+    {
+        return $this->state(function (array $attributes) use ($createdBookAt) {
+            $createdAt = fake()->dateTimeBetween($createdBookAt, 'now');
+            return [
+                "created_at" => $createdAt,
+                "updated_at" => fake()->dateTimeBetween($createdAt, 'now')
+            ];
+        });
+    }
     public function good()
     {
         return $this->state(function (array $attributes) {

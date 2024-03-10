@@ -16,15 +16,15 @@ class DatabaseSeeder extends Seeder
     {
         Book::factory(33)->create()->each(function ($book) {
             $numReviews = random_int(5, 30);
-            Review::factory($numReviews)->good()->for($book)->create();
+            Review::factory($numReviews)->fixDate($book->created_at)->good()->for($book)->create();
         });
         Book::factory(33)->create()->each(function ($book) {
             $numReviews = random_int(5, 30);
-            Review::factory($numReviews)->average()->for($book)->create();
+            Review::factory($numReviews)->fixDate($book->created_at)->average()->for($book)->create();
         });
         Book::factory(34)->create()->each(function ($book) {
             $numReviews = random_int(5, 30);
-            Review::factory($numReviews)->bad()->for($book)->create();
+            Review::factory($numReviews)->fixDate($book->created_at)->bad()->for($book)->create();
         });
 
     }
